@@ -1,3 +1,4 @@
+import _operator
 """
 Read file into texts and calls.
 It's ok if you don't understand how to read files
@@ -19,4 +20,17 @@ Print a message:
 "<telephone number> spent the longest time, <total time> seconds, on the phone during 
 September 2016.".
 """
+callers = {}
+for call in calls:
+    if call[0] not in callers:
+        callers[call[0]] = int(call[3])
+    else:
+        callers[call[0]] += int(call[3])
+    if call[1] not in callers:
+        callers[call[1]] = int(call[3])
+    else:
+        callers[call[1]] += int(call[3])
+longest_caller = max(callers.items(), key=_operator.itemgetter(1))[0]
+print("{} spent the longest time, {} seconds, on the phone during " \
+    "September 2016.".format(longest_caller, callers[longest_caller]))
 
