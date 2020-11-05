@@ -44,8 +44,10 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 people_called = []
+all = []
 for call in calls:
     if call[0][0:5] == "(080)":
+        all.append(call[1][0:5])
         if call[1][0] == "(":
             if call[1].split(")")[0] + ")" not in people_called:
                 people_called.append(call[1].split(")")[0] + ")")
@@ -57,3 +59,10 @@ for call in calls:
 print("The numbers called by people in Bangalore have codes:")
 for number in sorted(people_called):
     print(number)
+
+local = all.count("(080)")
+decimal = local/len(all)
+percentage = round(decimal * 100, 2)
+print("{} percent of calls from fixed lines in Bangalore are calls \
+to other fixed lines in Bangalore.".format(percentage))
+
