@@ -1,0 +1,17 @@
+Task 0:
+    The Big O for this file is O(1), because it is just accessing data
+    points in an array, which is very efficient.
+Task 1:
+    The Big O for this file is O(n), because using set is more efficient
+    than list with this program.
+Task 2:
+    The Big O for this file is O(n), because it uses a for loop (n),
+    adds a value to the dictionary(n), 
+    and finds the max (also n) for a dictionary.
+Task 3:
+    The Big O for this file is O(n^2), because it uses two for 
+    loops (2n), count (n), Timsort(n log n), and in operation for list(n)
+    inside of the for loop (making it n^2).
+Task 4:
+    The Big O for this file is O(n log n), because it uses four for 
+    loops (4n) and Timsort(n log n) 
