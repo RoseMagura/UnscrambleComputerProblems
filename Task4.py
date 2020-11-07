@@ -26,19 +26,27 @@ The list of numbers should be print out one per line in lexicographic order with
 """
 
 callers = {}
+
 for call in calls:
     if call[0] not in callers:
         callers[call[0]] = [1, 0, 0, 0]
     else:
         callers[call[0]][0] += 1
+for call in calls:
     if call[1] in callers:
         callers[call[1]][1] += 1
 
 for text in texts:
-    if text[0] in callers:
+    if text[0] not in callers:
+        callers[text[0]] = [0, 0, 1, 0]
+    else:
         callers[text[0]][2] += 1
+for text in texts:
     if text[1] in callers:
-        callers[text[1]][3] += 1
+        callers[call[1]][3] += 1
+    #     callers[text[0]][2] += 1
+    # if text[1] in callers:
+    #     callers[text[1]][3] += 1
 
 suspicious = []
 for caller in callers:
@@ -46,5 +54,6 @@ for caller in callers:
         suspicious.append(caller)
 
 print("These numbers could be telemarketers: ")
-for s in sorted(suspicious):
-    print(s)
+print(len(suspicious))
+# for s in sorted(suspicious):
+    # print(s)
