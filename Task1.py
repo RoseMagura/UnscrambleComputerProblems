@@ -19,7 +19,7 @@ Print a message:
 "There are <count> different telephone numbers in the records."
 """
 count = 0
-numbers = {""}
+numbers = set()
 for call in calls:
     for item in call[0:2]:
         if item not in numbers:

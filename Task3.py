@@ -43,25 +43,29 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
-people_called = []
-all_bangalore = 0
+people_called = set()
+to_bangalore = 0
+from_bangalore = 0
+mobile_digits = ['7', '8', '9']
 for call in calls:
     if call[0][0:5] == "(080)":
+        from_bangalore += 1
         if call[1][0] == "(":
-            if call[1].split(")")[0] == "(080":
-                all_bangalore += 1
-            if call[1].split(")")[0] + ")" not in people_called:
-                people_called.append(call[1].split(")")[0] + ")")
-        elif call[1][0:3] == "140" and "140" not in people_called:
-                people_called.append("140")
+            area_code_with_leading_paren = call[1].split(")")[0]
+            area_code = area_code_with_leading_paren[1:]
+            if area_code == "080":
+                to_bangalore += 1
+            people_called.add(area_code)
+        elif call[1][0:3] == "140":
+                people_called.add("140")
         else:
-            if call[1][0:4] not in people_called:
-                people_called.append(call[1][0:4])
+            if (call[1][0] in mobile_digits):
+                people_called.add(call[1][0:4])
 print("The numbers called by people in Bangalore have codes:")
 for number in sorted(people_called):
     print(number)
 
-decimal = all_bangalore/len(calls)
+decimal = to_bangalore/from_bangalore
 percentage = round(decimal * 100, 2)
 print("{} percent of calls from fixed lines in Bangalore are calls \
 to other fixed lines in Bangalore.".format(percentage))
